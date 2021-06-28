@@ -1,7 +1,7 @@
 <?php
- include "database/database.php";
 
- $objDb = new Database();
+  error_reporting(E_ERROR | E_PARSE);
+
 ?>
 <!doctype html>
 <!-- If multi-language site, reconsider usage of html lang declaration here. -->
@@ -30,35 +30,39 @@
     <link rel="stylesheet" media="screen" href="assets/css/style.css" >
   </head>
   <body>
+    <?php include "helper/registrationValidation.php"; ?>
     <!--container starts here-->
     <div class="container">
-      <form id="registrationForm" action="#FIXME" method= "post">
+      <form id="registrationForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method= "post">
         <div class="userName"> 
           <label for="username">Name:</label>
-          <input type="text" id="username" name="username" >
-          <span class="error"></span>
+          <input type="text" id="username" name="username" value='<?php if (isset($_POST["username"]) ) { echo $_POST["username"]; } else { echo ''; }?>'>
+          <span class="error"><?php echo $validate->nameError; ?></span>
         </div>
         <div class="emailId">
           <label for="emailid">E-mail:</label>
-          <input type="text" id="emailid" name="email" >
-          <span class="error"></span>
+          <input type="text" id="emailid" name="email" value='<?php if (isset($_POST["email"])) { echo $_POST["email"]; } else { echo ''; }?>'>
+          <span class="error"><?php echo $validate->emailError; ?></span>
         </div>
         <div class="gen">
           <label>Gender:</label>
-          <input type="radio" name="gender" id="male" value="male" ><label for="male">Male</label>
-          <input type="radio" name="gender" id="female" value="female" ><label for="female">Female</label>
-          <input type="radio" name="gender" id="other" value="other" ><label for="other">Other</label>
-          <span class="error"></span>
+          <input type="radio" name="gender" id="male" value="male" <?php if (isset($_POST["gender"]) && $_POST["gender"] == 'male' ) { echo "checked"; } else { echo ''; }?>>
+          <label for="male">Male</label>
+          <input type="radio" name="gender" id="female" value="female" <?php if (isset($_POST["gender"]) && $_POST["gender"] == 'female' ) { echo "checked"; } else { echo ''; }?>>
+          <label for="female">Female</label>
+          <input type="radio" name="gender" id="other" value="other" <?php if (isset($_POST["gender"]) && $_POST["gender"] == 'other' ) { echo "checked"; } else { echo ''; }?>>
+          <label for="other">Other</label>
+          <span class="error"><?php echo $validate->genderError; ?></span>
         </div>
         <div class="password">
           <label for="pwd">Password:</label>
           <input type="password" id="pwd" name="pwd" >
-          <span class="error"></span>
+          <span class="error"><?php echo $validate->pwdError; ?></span>
         </div>
         <div class="confirmPassword">
           <label for="repwd">Retype Password:</label>
           <input type="password" id="repwd" name="confirmpwd" >
-          <span class="error"></span>
+          <span class="error"><?php echo $validate->confirmpwdError; ?></span>
         </div>
         <input type="submit" name="submit" value="Submit">
       </form>

@@ -32,6 +32,29 @@ class Database
       echo "Connection failed: " . $e->getMessage();
     }
   }
+
+  public function insert($user, $hashPassword)
+  {    
+    $sql = "insert into registration (name, emailid, gender, password, sessionname) values (?,?,?,?,?)";
+    $this->stmt = $this->conn->prepare($sql);
+    
+    $this->stmt->execute(array($user->getName(), $user->getEmailid(), $user->getGender(), $hashPassword, $user->getEmailid()));
+  }
+
+
+  public function select($useremail)
+  {
+    $query = $this->conn->prepare("select * from registration where emailid=?");
+    $query->bindParam(1, $useremail);
+
+    if ($query->execute()) {
+      $result1 = $query->setFetchMode(PDO::FETCH_ASSOC);
+      $res = $query->fetch();
+      
+      return $res;
+    }
+  }
+
 }
 
 ?>
