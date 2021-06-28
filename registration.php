@@ -27,22 +27,37 @@
   <body>
     <!--container starts here-->
     <div class="container">
-      <form id="loginform" method="post" action="#FIXME">
+      <form id="registrationForm" action="#FIXME" method= "post">
+        <div class="userName"> 
+          <label for="username">Name:</label>
+          <input type="text" id="username" name="username" >
+          <span class="error"></span>
+        </div>
         <div class="emailId">
           <label for="emailid">E-mail:</label>
-          <input type="text" id="emailid" name="emailid" >
+          <input type="text" id="emailid" name="email" >
           <span class="error"></span>
         </div>
-        <div class="loginpassword">
-          <label for="loginpwd">Password:</label>
-          <input type="password" id="loginpwd" name="loginpwd" >
+        <div class="gen">
+          <label>Gender:</label>
+          <input type="radio" name="gender" id="male" value="male" ><label for="male">Male</label>
+          <input type="radio" name="gender" id="female" value="female" ><label for="female">Female</label>
+          <input type="radio" name="gender" id="other" value="other" ><label for="other">Other</label>
           <span class="error"></span>
         </div>
-        <input type="checkbox" name="remember" id="rememberme" class="rememberbox" name="remember">
-        <label for="rememberme">Remember me</label>
-        <input type="submit" name="login" value="Login">  
+        <div class="password">
+          <label for="pwd">Password:</label>
+          <input type="password" id="pwd" name="pwd" >
+          <span class="error"></span>
+        </div>
+        <div class="confirmPassword">
+          <label for="repwd">Retype Password:</label>
+          <input type="password" id="repwd" name="confirmpwd" >
+          <span class="error"></span>
+        </div>
+        <input type="submit" name="submit" value="Submit">
       </form>
-      <span>Don't have an account <a href="registration.php" class="signup" title="registration">Sign up now.</a></span>
+      <a href="index.php" class="loginpage" title="login">Login</a>
     </div>
     <!--container ends here-->
   </body>
