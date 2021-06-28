@@ -27,7 +27,7 @@
         $flag = false;
       }
       // echo "2->".$flag; 
-      if (empty($user->getEmailid()) && ($pageCode == 1 || $pageCode ==2)) {
+      if (empty($user->getEmailid()) && ($pageCode == 1 || $pageCode == 2)) {
         // echo "2.2->".$flag; 
         // echo "--un3";
         $this->emailError = Parent::checkRequired($user->getEmailid());
@@ -67,5 +67,38 @@
       // echo $flag;
       return $flag;
     }
+
+    public function loginValidation($user)
+    {
+      $flag = true;
+      if (empty($user->getEmailid())) {
+        $this->emailError = Parent::checkRequired($user->getEmailid());
+        $flag = false;
+      } elseif (!empty(Parent::checkEmail($user->getEmailid()))) {
+        $this->emailError = Parent::checkEmail($user->getEmailid());
+        $flag = false;
+      }
+      return $flag;
+    }
+
+    public function loginData($user)
+    {
+      
+      global $databaseObj;
+      if ($dataRetruned = $databaseObj->select($user->getEmailid()))
+      {
+        if (password_verify($user->getPassword(), $dataRetruned['password'])) {
+          $_SESSION["loggedin"] = true;
+          $_SESSION["sessionname"] = $dataRetruned['sessionname'];
+          $_SESSION["id"] =$dataRetruned['id'];
+          header("location:home.php");
+        } else {
+          $this->pwdError = "Please enter valid password.";
+        }
+      } else {
+        $this->emailError = "Please enter registered emailid";
+      } 
+    }
+
   }
 ?>

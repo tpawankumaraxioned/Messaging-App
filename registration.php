@@ -1,6 +1,12 @@
 <?php
 
+  session_start();
+
   error_reporting(E_ERROR | E_PARSE);
+
+  if (isset($_SESSION["sessionname"]) && isset($_SESSION["id"])) {
+    header("location:home.php");
+  }
 
 ?>
 <!doctype html>

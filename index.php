@@ -1,3 +1,12 @@
+<?php
+
+  session_start();
+
+  if (isset($_SESSION["sessionname"]) && isset($_SESSION["id"])) {
+    header("location: home.php");
+  }
+
+?>
 <!doctype html>
 <!-- If multi-language site, reconsider usage of html lang declaration here. -->
 <html lang="en"> 
@@ -25,20 +34,22 @@
     <link rel="stylesheet" media="screen" href="assets/css/style.css" >
   </head>
   <body>
+    <?php include "helper/loginValidation.php"; ?>
     <!--container starts here-->
     <div class="container">
-      <form id="loginform" method="post" action="#FIXME">
+      <form id="loginform" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <div class="emailId">
           <label for="emailid">E-mail:</label>
-          <input type="text" id="emailid" name="emailid" >
-          <span class="error"></span>
+          <input type="text" id="emailid" name="emailid" value='<?php if ($_POST) { echo $_POST["emailid"]; } 
+          elseif (isset($_COOKIE["emailId"])) { echo $_COOKIE["emailId"]; } else { echo ''; } ?>'>
+          <span class="error"><?php echo $validate->emailError; ?></span>
         </div>
         <div class="loginpassword">
           <label for="loginpwd">Password:</label>
           <input type="password" id="loginpwd" name="loginpwd" >
-          <span class="error"></span>
+          <span class="error"><?php echo $validate->pwdError; ?></span>
         </div>
-        <input type="checkbox" name="remember" id="rememberme" class="rememberbox" name="remember">
+        <input type="checkbox" name="remember" id="rememberme" class="rememberbox" name="remember" <?php if (isset($_COOKIE["emailId"])) { echo "checked"; } ?>>
         <label for="rememberme">Remember me</label>
         <input type="submit" name="login" value="Login">  
       </form>
