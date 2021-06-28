@@ -1,5 +1,14 @@
+<?php
+  session_start();
 
+  if (!isset($_SESSION["sessionname"]) && !isset($_SESSION["id"])) {
+    header("location:index.php");
+  }
+  
+  include 'Database/database.php';
+  $db = new Database();
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,10 +19,15 @@
   <link rel="stylesheet" media="screen" href="assets/css/style.css" >
 </head>
 <body>
-  <a href="logout.php" class="logoutbtn" title="logout">Logout</a>  
+<a href="logout.php" class="logoutbtn" title="logout">Logout</a>  
   <div class="container">
     <div class="data">      
-      
+      <?php
+        
+        $userRecord = $db->showUser($_SESSION["sessionname"]);
+        
+        foreach ( $userRecord as $result ) {
+          ?>
             <ul class="records">
               <li><?php echo "Full Name : ".$result['name'] ?></li>
               <li><?php echo "EmailId : ".$result['emailid'] ?></li>
@@ -24,7 +38,9 @@
               </a>
               </li>
             </ul>
-          
+          <?php
+        }
+      ?>
     </div>
   </div>
 </body>
