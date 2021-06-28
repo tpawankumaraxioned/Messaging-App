@@ -34,23 +34,37 @@
   <body>
     <!--container starts here-->
     <div class="container">
-      <!--header starts here-->
-      <header>
-        
-      </header>
-      <!--header ends here-->
-      <!--main starts here-->
-      <main>
-
-      </main>
-      <!--main ends here-->
-
-      <!--footer starts here-->
-      <footer>      
-
-      </footer>
-      <!--footer ends here-->
-
+      <form id="registrationForm" action="#FIXME" method= "post">
+        <div class="userName"> 
+          <label for="uname">Name:</label>
+          <input type="text" id="username" name="name" >
+          <span class="error"></span>
+        </div>
+        <div class="emailId">
+          <label for="emailid">E-mail:</label>
+          <input type="text" id="emailid" name="email" >
+          <span class="error"></span>
+        </div>
+        <div class="gen">
+          <label>Gender:</label>
+          <input type="radio" name="gender" id="male" value="male" ><label for="male">Male</label>
+          <input type="radio" name="gender" id="female" value="female" ><label for="female">Female</label>
+          <input type="radio" name="gender" id="other" value="other" ><label for="other">Other</label>
+          <span class="error"></span>
+        </div>
+        <div class="password">
+          <label for="pwd">Password:</label>
+          <input type="password" id="pwd" name="pwd" >
+          <span class="error"></span>
+        </div>
+        <div class="confirmPassword">
+          <label for="repwd">Retype Password:</label>
+          <input type="password" id="repwd" name="confirmpwd" >
+          <span class="error"></span>
+        </div>
+        <input type="submit" name="submit" value="Submit">
+      </form>
+      <a href="login.php" class="loginpage" title="login">Login</a>
     </div>
     <!--container ends here-->
   </body>
