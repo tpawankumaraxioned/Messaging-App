@@ -53,7 +53,5 @@
 
     </div>
     <!--container ends here-->
-    <script src="js/vendors/jquery-1.8.3.min.js"></script>
-    <script src="js/script.js"></script>
   </body>
 </html>
