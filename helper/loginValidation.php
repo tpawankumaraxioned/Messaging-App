@@ -16,7 +16,7 @@
       
       $validate->loginData($user);
       if (isset($_POST['remember'])) {
-        setcookie("emailId", $user->getEmail(), time() + 3600);
+        setcookie("emailId", $user->getEmailid(), time() + 3600);
       }
     }
   }

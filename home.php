@@ -22,18 +22,14 @@
 <body>
   <a href="logout.php" class="logoutbtn" title="logout">Logout</a>  
   <div class="container">
-  <h1>Inside Home Page</h1>
     <div class="data">      
       <?php
-
-        $userRecord = $db->showUser();
-        // echo "<pre>";
-        // print_r($userRecord);
-        // echo "</pre>";
+        
+        $userRecord = $db->showUser($_SESSION["sessionname"]);
+        
         foreach ( $userRecord as $result ) {
           ?>
             <ul class="records">
-              <!-- <li><?php echo "Id : ".$result['id'] ?></li> -->
               <li><?php echo "Full Name : ".$result['name'] ?></li>
               <li><?php echo "EmailId : ".$result['emailid'] ?></li>
               <li><?php echo "Gender : ".$result['gender'] ?></li>

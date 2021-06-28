@@ -55,9 +55,10 @@ class Database
     }
   }
 
-  public function showUser()
+  public function showUser($emailid)
   {
-    $query = $this->conn->prepare("select * from registration");
+    $query = $this->conn->prepare("select * from registration where NOT emailid =?");
+    $query->bindParam(1, $emailid);
     if ($query->execute()) {
       $result1 = $query->setFetchMode(PDO::FETCH_ASSOC);
       $res = $query->fetchAll();
