@@ -5,7 +5,10 @@
     header("location:index.php");
   }
   
-  include 'Database/database.php';
+  $getUrlEmail = $_GET['emailid'];
+  
+  include 'helper/sendData.php';
+  include 'database/database.php';
   $db = new Database();
 
 ?>
@@ -24,15 +27,19 @@
   <div class="container">
 
     <div class="chathistory">
-      
+      <?php
+        if(isset($_POST['send'])) {
+          echo "$textMsg";
+        }
+      ?>
     </div>
 
     
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])."?emailid=$getUrlEmail" ?>" method="POST">
       <div class="chatbox">
         <textarea name="messagebox" id="msg" cols="30" rows="10"></textarea>
       </div>
-      <input type="submit" name="login" value="Send">
+      <input type="submit" name="send" value="Send">
     </form>
     <a href="home.php" class="loginpage" title="cancel">Cancel</a>
   </div>

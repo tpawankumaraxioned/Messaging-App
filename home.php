@@ -5,7 +5,7 @@
     header("location:index.php");
   }
   
-  include 'Database/database.php';
+  include 'database/database.php';
   $db = new Database();
 
 ?>
@@ -33,7 +33,7 @@
               <li><?php echo "EmailId : ".$result['emailid'] ?></li>
               <li><?php echo "Gender : ".$result['gender'] ?></li>
               <li>
-                <a href="message.php?id=<?php echo $result['id'] ?>" title="chat" class="chatMsgBtn" name="editPage">
+                <a href="message.php?emailid=<?php echo $result['emailid'] ?>" title="chat" class="chatMsgBtn" name="editPage">
                 <?php echo "Chat with ".$result['name']; ?>
               </a>
               </li>

@@ -11,9 +11,6 @@
     $user->setName($_POST["username"]);
 
     $dataPresent = $databaseObj->select($_POST["email"]);
-    // echo "<pre>";
-    // print_r($dataPresent);
-    // echo "</pre>";
   
     if ($_POST["email"] == $dataPresent['emailid']) {
       $validate->emailError = "Please Enter Different EmailId";
@@ -29,10 +26,6 @@
     $user->setConfirmPassword($_POST["confirmpwd"]);
     
     $hashPassword = password_hash($user->getPassword(), PASSWORD_DEFAULT);
-    // echo $hashPassword;
-    // echo "<pre>";
-    // print_r($user);
-    // echo "</pre>";
 
     if ($validate->dataValidation($user,1))
     {

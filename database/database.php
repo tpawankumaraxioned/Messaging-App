@@ -26,8 +26,17 @@ class Database
         UNIQUE(`emailid`))";
     
       $this->conn->exec($table);
-      // echo "Table MyGuests created successfully";
-        
+
+      $messagetable = "CREATE TABLE IF NOT EXISTS `messages` ( 
+        `id` INT(10) NOT NULL AUTO_INCREMENT , 
+        `sent_by` VARCHAR(40) NOT NULL , 
+        `received_by` VARCHAR(40) NOT NULL , 
+        `message` TEXT NOT NULL , 
+        `createdAt` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+        PRIMARY KEY (`id`))";
+      
+      $this->conn->exec($messagetable);
+
     } catch(PDOException $e) {
       echo "Connection failed: " . $e->getMessage();
     }
