@@ -1,3 +1,8 @@
+<?php
+ include "database/database.php";
+
+ $objDb = new Database();
+?>
 <!doctype html>
 <!-- If multi-language site, reconsider usage of html lang declaration here. -->
 <html lang="en"> 
