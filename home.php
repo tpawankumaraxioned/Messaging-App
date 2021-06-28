@@ -23,35 +23,30 @@
   <a href="logout.php" class="logoutbtn" title="logout">Logout</a>  
   <div class="container">
   <h1>Inside Home Page</h1>
-    <!-- <div class="data">      
+    <div class="data">      
       <?php
 
-        $array = $db->show();
-        
-        foreach ( $array as $result ) {
+        $userRecord = $db->showUser();
+        // echo "<pre>";
+        // print_r($userRecord);
+        // echo "</pre>";
+        foreach ( $userRecord as $result ) {
           ?>
             <ul class="records">
-              <li><?php echo "Id : ".$result['id'] ?></li>
+              <!-- <li><?php echo "Id : ".$result['id'] ?></li> -->
               <li><?php echo "Full Name : ".$result['name'] ?></li>
-              <li><?php echo "EmailId : ".$result['email'] ?></li>
-              <li><?php echo "Mobile no : ".$result['mobile'] ?></li>
-              <li><?php echo "City : ".$result['city'] ?></li>
-              <li><?php echo "Degree : ".$result['degree'] ?></li>
+              <li><?php echo "EmailId : ".$result['emailid'] ?></li>
               <li><?php echo "Gender : ".$result['gender'] ?></li>
-              <?php 
-                if ($result['sessionname'] == $_SESSION["sessionname"]) {
-              ?>
               <li>
-                <a href="update.php?id=<?php echo $result['id'] ?>" title="edit" class="edit" name="editPage">Edit</a> 
+                <a href="message.php?id=<?php echo $result['id'] ?>" title="chat" class="chatMsgBtn" name="editPage">
+                <?php echo "Chat with ".$result['name']; ?>
+              </a>
               </li>
-              <?php 
-                }
-              ?>
             </ul>
           <?php
         }
       ?>
-    </div> -->
+    </div>
   </div>
 </body>
 </html>

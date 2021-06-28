@@ -55,6 +55,17 @@ class Database
     }
   }
 
+  public function showUser()
+  {
+    $query = $this->conn->prepare("select * from registration");
+    if ($query->execute()) {
+      $result1 = $query->setFetchMode(PDO::FETCH_ASSOC);
+      $res = $query->fetchAll();
+      
+      return $res;
+    }
+  }
+
 }
 
 ?>
